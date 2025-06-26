@@ -2,10 +2,14 @@ import java.util.Scanner;
 
 public class contaTerminal {
     public static void main(String[] args) {
-        //TODO: conhecer e importar a classe Scanner;
+        //TODO: conhecer e importar a classe Scanner; 
+        // Feito.
         // exibir as mensagens para o usuário;
+        // Feito.
         // obter pela classe Scanner os valores digitados no terminal;
+        // Feito.
         // exibir a mensagem da conta criada.
+        // Feito.
 
         int numeroConta;
         String contaFormatada;
@@ -28,7 +32,7 @@ public class contaTerminal {
             } else if (!contaStr.matches("[0-9]+")) {
                 System.out.println("O número deve conter apenas algarismos.");
             } else if(contaStr.length() != 6) {
-                    System.out.println("O número deve conter 6 algarismos");
+                System.out.println("O número deve conter 6 algarismos");
             } else {
                 numeroConta = Integer.parseInt(contaStr);
                 int parte1 = numeroConta / 10;
@@ -74,8 +78,10 @@ public class contaTerminal {
 
             if(nomeCliente.isEmpty()) {
                 System.out.println("O campo 'nome' não pode estar vazio");
+                continue;
             } else if(nomeCliente.length() > 100) {
-                    System.out.println("O nome não pode exceder 100 caracteres.");
+                System.out.println("O nome não pode exceder 100 caracteres.");
+                continue;
             } if (!nomeCliente.matches("[a-zA-ZÀ-ÿ\\s'’\\-]+")) {
                 System.out.println("O nome deve conter apenas letras, espaços, hífens ou apóstrofos.");
             } else {
