@@ -8,6 +8,7 @@ public class contaTerminal {
         // exibir a mensagem da conta criada.
 
         int numeroConta;
+        String contaFormatada;
         String agencia;
         String entradaAgencia;
         String agenciaFormatada;
@@ -15,7 +16,6 @@ public class contaTerminal {
         String contaStr;
         double saldo;
         Scanner scan = new Scanner(System.in);
-
 
         // Número da conta
         while (true) {
@@ -31,6 +31,9 @@ public class contaTerminal {
                     System.out.println("O número deve conter 6 algarismos");
             } else {
                 numeroConta = Integer.parseInt(contaStr);
+                int parte1 = numeroConta / 10;
+                int parte2 = numeroConta % 10;
+                contaFormatada = parte1 + "-" + parte2;
                 break;
             }
         }
@@ -41,8 +44,8 @@ public class contaTerminal {
             entradaAgencia = scan.nextLine().trim();
 
             // Verifica se é número negativo (hífen na posição 0 da string)
-            if (entradaAgencia.startsWith("-")) {
-                System.out.println("O número da agência não pode ser negativo");
+            if (entradaAgencia.matches("-\\d+")) {
+                System.out.println("O número da agência não pode ser negativo.");
                 continue;
             }
 
@@ -67,12 +70,14 @@ public class contaTerminal {
         // Nome do cliente
         while (true) {
             System.out.println("Informe o nome do cliente: ");
-            nomeCliente = scan.nextLine();
+            nomeCliente = scan.nextLine().trim();
 
             if(nomeCliente.isEmpty()) {
                 System.out.println("O campo 'nome' não pode estar vazio");
             } else if(nomeCliente.length() > 100) {
                     System.out.println("O nome não pode exceder 100 caracteres.");
+            } if (!nomeCliente.matches("[a-zA-ZÀ-ÿ\\s'’\\-]+")) {
+                System.out.println("O nome deve conter apenas letras, espaços, hífens ou apóstrofos.");
             } else {
                 break;
             }
@@ -95,8 +100,8 @@ public class contaTerminal {
         }
 
         // Visualização dos dados solicitados
-        System.out.printf("Olá, %s! obrigado por criar uma conta em nosso banco, " +
-                "sua agência é %s, conta %06d e seu saldo %.2f " +
-                "já está disponível para saque.\n", nomeCliente, agenciaFormatada, numeroConta, saldo);
+        System.out.printf("Olá, %s! Obrigado por criar uma conta em nosso banco, " +
+                "sua agência é %s, conta %s e seu saldo %.2f " +
+                "já está disponível para saque.\n", nomeCliente, agenciaFormatada, contaFormatada, saldo);
     }
 }
